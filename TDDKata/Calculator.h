@@ -7,6 +7,7 @@
 
 #define ERR_FORMAT -2
 #define ERR_PARAM_COUNT -1
+#define ERR_NULL_PTR -3
 
 class Calculator
 {

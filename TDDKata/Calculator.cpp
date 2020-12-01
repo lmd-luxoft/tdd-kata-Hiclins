@@ -11,6 +11,9 @@ int Calculator::Add(char* expression)
 
     int summ = 0;
     
+    if (expression == NULL) {
+        return ERR_NULL_PTR;
+    }
 
     if (!strlen(expression)) {
         return 0;
@@ -30,16 +33,12 @@ int Calculator::Add(char* expression)
             return ERR_FORMAT;
         if (*p == ',') {
             int param = -1;
-            paramCount++;
             int res = sscanf((p + 1), "%d", &param);
             if (res && param >= 0) {
                 summ += param;
             }
             else {
                 return ERR_FORMAT;
-            }
-            if (paramCount > 2) {
-                return ERR_PARAM_COUNT;
             }
         }
 

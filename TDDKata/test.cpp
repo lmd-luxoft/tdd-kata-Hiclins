@@ -34,7 +34,7 @@
 
 	TEST(TDDKata, TestName3) {
 		Calculator calc;
-		ASSERT_EQ(calc.Add("1,1,1"), -1);
+		ASSERT_EQ(calc.Add("1,1,1"), 3);
 		ASSERT_TRUE(true);
 	}
 
