@@ -115,3 +115,28 @@
 		ASSERT_EQ(calc.Add(NULL), -3);
 		ASSERT_TRUE(true);
 	}
+
+
+	TEST(TDDKata, TestDelimiter) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1,1\n1,1,1,1,1\n1,1,1,1,1,1\n1,1"), 15);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestDelimiter) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1,1,\n1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestDelimiter2) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1,1\n,1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestDelimiter3) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1,1\n\n1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
+		ASSERT_TRUE(true);
+	}
