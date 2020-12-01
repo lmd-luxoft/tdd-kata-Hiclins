@@ -13,7 +13,7 @@
 		ASSERT_TRUE(true);
 	}
 
-	TEST(TDDKata, TestName1) {
+	TEST(TDDKata, TestName19) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("123456789"), 123456789);
 		ASSERT_TRUE(true);
@@ -50,7 +50,7 @@
 		ASSERT_TRUE(true);
 	}
 
-	TEST(TDDKata, Zero2) {
+	TEST(TDDKata, Zero1) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("00,000"), 0);
 		ASSERT_TRUE(true);

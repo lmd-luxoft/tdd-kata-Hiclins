@@ -4,6 +4,10 @@
 /// <summary>
 /// Class Under test
 /// </summary>
+
+#define ERR_FORMAT -2
+#define ERR_PARAM_COUNT -1
+
 class Calculator
 {
 public:
