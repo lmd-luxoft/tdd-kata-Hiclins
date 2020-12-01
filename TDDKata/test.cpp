@@ -98,3 +98,20 @@
 		ASSERT_TRUE(true);
 	}
 
+	TEST(TDDKata, Param5) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1,1,1,1,1"), 5);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, maxParam) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1000001"), 1000015);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, NullTest) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add(NULL), -3);
+		ASSERT_TRUE(true);
+	}
