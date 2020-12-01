@@ -24,14 +24,17 @@ int Calculator::Add(char* expression)
 
     if(summ < 0)
         return ERR_FORMAT;
-    if(*expression == ',')
+    if(*expression == ',' || *expression == '\n')
         return ERR_FORMAT;
 
     int paramCount = 1;
     do {
-        if ((*p < '0' || *p > 'p') && *p != ',')
+        if ((*p < '0' || *p > 'p') && *p != ',' && *p != '\n')// проверка на допустимые символы
             return ERR_FORMAT;
-        if (*p == ',') {
+        if (*p == ',' || *p == '\n') {
+            if (*(p + 1) == ',' || *(p + 1) == '\n') {// если 2 разделителя подряд
+                return ERR_FORMAT;
+            }
             int param = -1;
             int res = sscanf((p + 1), "%d", &param);
             if (res && param >= 0) {

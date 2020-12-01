@@ -123,7 +123,7 @@
 		ASSERT_TRUE(true);
 	}
 
-	TEST(TDDKata, TestDelimiter) {
+	TEST(TDDKata, TestDelimiter1) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("1,1,\n1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
 		ASSERT_TRUE(true);
