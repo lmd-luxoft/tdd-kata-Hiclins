@@ -140,3 +140,52 @@
 		ASSERT_EQ(calc.Add("1,1\n\n1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
 		ASSERT_TRUE(true);
 	}
+
+	TEST(TDDKata, TestNewDelimiter) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//;\n1;1;1;1;1;1;1;1;1;1;1;1;1;1;1"), 15);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestNewDelimiter1) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//\n;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1"), ERR_CHANGE_DELIMITER_FORMAT);
+		ASSERT_TRUE(true);
+	}
+	TEST(TDDKata, TestNewDelimiter2) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//\n\n;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1"), ERR_CHANGE_DELIMITER_FORMAT);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestNewDelimiter3) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//z\nz1z1z1"), ERR_FORMAT);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestNewDelimiter5) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//z\n1z1z1"), 3);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestNewDelimiter6) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//z\n1z1,1"), ERR_FORMAT);
+		ASSERT_TRUE(true);
+	}
+
+	TEST(TDDKata, TestNewDelimiter4) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("//1\n1211223121"), ERR_CHANGE_DELIMITER_FORMAT);
+		ASSERT_TRUE(true);
+	}
+
+
+	TEST(TDDKata, TestNewDelimiter7) {
+		Calculator calc;
+		ASSERT_EQ(calc.Add("1//.\n,1,1,1,1,1,1,1,1,1,1,1,1,1,1"), ERR_FORMAT);
+		ASSERT_TRUE(true);
+	}
+
