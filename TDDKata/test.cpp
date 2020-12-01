@@ -67,19 +67,19 @@
 		ASSERT_EQ(calc.Add("-1,2"), -2);
 		ASSERT_TRUE(true);
 	}
-
+	
 	TEST(TDDKata, Dot) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("1.1"), -2);
 		ASSERT_TRUE(true);
 	}
-
+	
 	TEST(TDDKata, Dot2) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("1,1.1"), -2);
 		ASSERT_TRUE(true);
 	}
-
+	
 	TEST(TDDKata, Format) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add(",1,1"), -2);
@@ -97,7 +97,7 @@
 		ASSERT_EQ(calc.Add("a,z"), -2);
 		ASSERT_TRUE(true);
 	}
-
+	
 	TEST(TDDKata, Param5) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("1,1,1,1,1"), 5);
@@ -122,7 +122,7 @@
 		ASSERT_EQ(calc.Add("1,1\n1,1,1,1,1\n1,1,1,1,1,1\n1,1"), 15);
 		ASSERT_TRUE(true);
 	}
-
+	
 	TEST(TDDKata, TestDelimiter1) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("1,1,\n1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
@@ -140,7 +140,7 @@
 		ASSERT_EQ(calc.Add("1,1\n\n1,1,1,1,1,1,1,1,1,1,1,1,1"), -2);
 		ASSERT_TRUE(true);
 	}
-
+	
 	TEST(TDDKata, TestNewDelimiter) {
 		Calculator calc;
 		ASSERT_EQ(calc.Add("//;\n1;1;1;1;1;1;1;1;1;1;1;1;1;1;1"), 15);

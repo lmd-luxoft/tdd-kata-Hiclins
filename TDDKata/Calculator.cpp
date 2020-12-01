@@ -10,6 +10,7 @@ int Calculator::Add(char* expression)
 {
 
     int summ = 0;
+    int error = 0;
     
     if (expression == NULL) {
         return ERR_NULL_PTR;
@@ -19,34 +20,94 @@ int Calculator::Add(char* expression)
         return 0;
     }
 
-    char* p = expression;
-    summ = atoi(expression);
+    expression = checkNewDelimiter(expression, &error);
+    if (error) return error;
 
-    if(summ < 0)
-        return ERR_FORMAT;
-    if(*expression == ',' || *expression == '\n')
-        return ERR_FORMAT;
-
-    int paramCount = 1;
     do {
-        if ((*p < '0' || *p > 'p') && *p != ',' && *p != '\n')// проверка на допустимые символы
-            return ERR_FORMAT;
-        if (*p == ',' || *p == '\n') {
-            if (*(p + 1) == ',' || *(p + 1) == '\n') {// если 2 разделителя подряд
-                return ERR_FORMAT;
-            }
-            int param = -1;
-            int res = sscanf((p + 1), "%d", &param);
-            if (res && param >= 0) {
-                summ += param;
-            }
-            else {
-                return ERR_FORMAT;
-            }
+        summ += getNum(expression, &error);
+        if (error) break;
+        expression = getEndNum(expression);
+        if (*expression != '\0') {
+            expression = getNextNum(expression, &error);
         }
+    } while (!error && *expression != '\0');
 
-        p++;
-    } while (*p != '\0');
-
+    if (error) return error;
     return summ;
+}
+
+
+char* Calculator::checkNewDelimiter(char* c, int* error) {
+	if (c[0] == '/' && c[1] == '/') {
+		if (c[0] == '/' &&
+			c[1] == '/' &&
+			(c[2] <= '0' || c[2] >= '9') && c[2] != '\n' && c[2] != '\0' &&
+			c[3] == '\n') {
+			newDelimiter = c[2];
+			return &c[4];
+		}
+		else {
+			*error = ERR_CHANGE_DELIMITER_FORMAT;
+		}
+	}
+	return c;
+}
+
+
+
+bool Calculator::isDelimiter(char* c) {
+	if (!newDelimiter) {
+		if (*c == ',' || *c == '\n')
+			return true;
+		else
+			return false;
+	}
+	else {
+		if (*c == newDelimiter)
+			return true;
+		else
+			return false;
+	}
+}
+
+bool Calculator::isValidNum(char* c) {
+	int num, res;
+	res = sscanf(c, "%d", &num);
+	if (res && num >= 0)
+		return true;
+	else
+		return false;
+
+}
+
+int Calculator::getNum(char* p, int* error) {
+	int num;
+	int res = sscanf(p, "%d", &num);
+	if (!res || num < 0)
+		*error = ERR_FORMAT;
+	return num;
+}
+
+bool Calculator::isDig(char* c) {
+	if (*c >= '0' && *c <= '9')
+		return true;
+	return false;
+}
+
+char* Calculator::getNextNum(char* p, int* error) {
+	if (isDelimiter(p)) {
+		if (!isDig(++p))
+			*error = ERR_FORMAT;
+	}
+	else {
+		*error = ERR_FORMAT;
+	}
+	return p;
+}
+
+char* Calculator::getEndNum(char* n) {
+	while (*n >= '0' && *n <= '9') {
+		n++;
+	}
+	return n;
 }
