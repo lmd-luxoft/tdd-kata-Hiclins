@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "Calculator.h"
 #include "TestFixture.h"
+#include "TestFixtureWithParam.h"
 
+/*
 	TEST_F(TestFixture, NoStr) {
 		char* op = ""; 
 		int expected = 0;
@@ -252,3 +254,16 @@
 		ASSERT_EQ(expected, actual);
 	}
 
+	*/
+
+
+TEST_P(TestFixtureWithParam, Sample)
+{
+	//Arrange
+	char* op = GetParam().op;
+	int expected = GetParam().expected;
+	//Act
+	int actual = calc->Add(op);
+	//Assert
+	ASSERT_EQ(expected, actual);
+}
